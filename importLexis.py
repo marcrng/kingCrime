@@ -130,7 +130,6 @@ df_list = []
 start_date = date(2017, 1, 1)
 end_date = date(2022, 8, 2)
 
-
 for date in rrule.rrule(rrule.DAILY, dtstart=start_date, until=end_date):
     buttonFilter.click()  # Open the filter pane
 
@@ -157,12 +156,10 @@ for date in rrule.rrule(rrule.DAILY, dtstart=start_date, until=end_date):
     pageSource = driver.page_source
     df_list.append(pd.read_html(pageSource)[0])
 
-
 df = pd.concat(df_list, axis=0, ignore_index=True)
 print(df.to_string())
 
 df.to_sql('lex', engine, index=False)
-
 
 # End the web session
 # driver.quit()
