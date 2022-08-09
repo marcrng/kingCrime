@@ -1,5 +1,4 @@
 import datetime
-
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.edge.service import Service
@@ -25,11 +24,10 @@ engine = create_engine(
         pw=config.sql_pass)
 )
 
-# Launch the browser on below page
-
+# Launch the browser using Selenium
 driver.get("https://www.communitycrimemap.com/")
 
-# Bypass terms popup
+# Bypass initial popup
 try:
     element = WebDriverWait(driver, 2).until(
         EC.presence_of_element_located(
